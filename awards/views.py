@@ -1,13 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from . models import Project , Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from . models import Profile, Post
 from django.utils import timezone
 from django.views.generic import RedirectView
 from django.template.loader import render_to_string
-
 
 
 @login_required(login_url='/accounts/login/')
@@ -21,6 +19,15 @@ def index(request):
         prof.save()
     return render(request, 'index.html',{"date": date, "posts": posts})
 
+@login_required(login_url='/accounts/login/')
+def profile(request,user_id=None):
+    if user_id == None:
+        user_id=request.user.id
+    current_user = User.objects.get(id = user_id)
+    user = current_user
+    images = Post.objects.filter(user=current_user)
+    profile = Profile.objects.all()
+    return render(request, 'profile.html', locals())
 
 def add_comment(request,id):
     current_user = request.user
@@ -52,14 +59,25 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
 
-class PostList(APIView):
-    def get(self, request, format=None):
-        all_post = Post.objects.all()
-        serializers = PostSerializer(all_post, many=True)
-        return Response(serializers.data)
+@login_required(login_url='/accounts/login/')
+def vote(request,post_id):
+    try:
+        post = Post.objects.get(id = post_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"vote.html", {"post":post})
 
-class ProfileList(APIView):
-    def get(self, request, format=None):
-        all_profile = Post.objects.all()
-        serializers = PostSerializer(all_profile, many=True)
-        return Response(serializers.data)
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+            return redirect('index')
+    else:
+        form = NewPostForm()
+    return render(request, 'new_post.html', {"form":form})
