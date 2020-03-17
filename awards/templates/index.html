@@ -1,0 +1,82 @@
+{% extends 'base.html %}
+{% load static %}
+{% block content %}
+{{block.super}}
+ 
+<link rel="stylesheet" href="{%   static 'star-ratings/css/star-ratings.css' %}">
+<div class="btn1 btn container-fluid" style="background-image: url(https://youornot.com/isespscreensv8/assets/img/award-bg.jpg)"></div>
+<div class="header" style="height: 80vh; font-family: 'Encode Sans Expanded', sans-serif;">
+    <div class="container" style="color:white;">
+        <div class="row" style="padding-top:50px;">
+            <div class="col-md-4">
+                <strong>Awards Site</strong> {{date|date:"F d, Y"}}
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <a class="btn" href="" style="color:white;">Collect</a>
+            </div>
+        </div>
+        <div style="text-align:center; font-size: 70px; padding-top:30px; letter-spacing: 1px;">
+            <p>First Site</p>
+        </div>
+        <div style="text-align:center;">
+            <p>BY <strong style="color:#49c5b6;"> MARTIN </strong> FROM KENYA WITH <strong> 3.00</strong></p>
+        </div>
+        <div style="height:230px;">
+
+        </div>
+        <div>
+            <div id="box" class="col-md-4">
+                <button class="btn" style=" border-radius: 5em; background-color: #49c5b6; border:none; padding: 2px; width: 80px;"><a
+                        target="blank" style="color: white; text-decoration:none;" href="http://www.digitaldesigner.cool/">Visit</a></button>
+                <button class="btn" style="color: white; border-radius: 5em; background-color: transparent; border:1px solid #49c5b6; padding: 2px; width: 80px;">
+                    likes </button>
+                <button class="btn" style="color: white; border-radius: 5em; background-color: transparent; border:1px solid white; padding: 2px; width: 80px;">Collect</button>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="jumbotron">
+<div class="container-fluid" style="margin-bottom: 10px;  padding-left:55px; padding-right:55px; font-family: 'Raleway', sans-serif;">
+    <div class="" style=" padding-bottom:20px;">
+        <h5><strong>Nominees</strong> We need your vote!</h5>
+    </div>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-3" style="margin-bottom:25px;">
+            <div id="image" class="hover02 column body">
+                <figure><a target="blank" href="{%url 'vote' post_id=post.id%}"><img class="img-responsive" src="{{post.image.url }}"
+                            width="100%" ; height="200px" ;></a></figure>
+            </div>
+            <div class="card-header" style="background-color:white; font-size: 13px; margin-top:0px;">
+                <p><strong>{{post.sitename}}</strong></p>
+                <p class="size">From {{post.country}} &nbsp; {{post.post_date}}</p>
+
+                {% load ratings %}
+                {% ratings post %}
+            
+                <div class="text2">
+                    <a target="blank" href="{{post.url}}" style="color:black; text-decoration:none;"><strong>Visit</strong>
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer" style="background-color:white;">
+                <p>By <strong>{{post.user}}</strong></p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js'%}"></script>
+{% for post in posts %}
+
+{% endfor %}
+
+{% endblock %}
