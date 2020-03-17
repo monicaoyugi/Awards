@@ -29,6 +29,7 @@ def profile(request,user_id=None):
     profile = Profile.objects.all()
     return render(request, 'profile.html', locals())
 
+
 def add_comment(request,id):
     current_user = request.user
     image = Image.get_single_photo(id=id)
@@ -45,6 +46,19 @@ def add_comment(request,id):
     else:
         form = CommentForm()
         return render(request,'new_comment.html',{"form":form,"image":image})
+
+
+@login_required(login_url='/accounts/login')
+def updateprofile(request):
+	if request.method == 'POST':
+		form = ProfileForm(request.POST,request.FILES, instance=request.user.profile)
+		if form.is_valid():
+			form.save()
+			return redirect('profile')
+
+	else:
+			form = ProfileForm()
+	return render(request, 'updateprofile.html',{"form":form })
 
 def search_results(request):
 
@@ -68,7 +82,7 @@ def vote(request,post_id):
     return render(request,"vote.html", {"post":post})
 
 @login_required(login_url='/accounts/login/')
-def new_post(request):
+def post(request):
     current_user = request.user
     if request.method == 'POST':
         form = NewPostForm(request.POST, request.FILES)
