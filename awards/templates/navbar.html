@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <!-- fonts -->
+</head>
+
+<body>
+    <div id="navbar" class="container-fluid" style="border-bottom: 1px solid rgb(231, 230, 230);">
+        <div class="row">
+            <div class="col-md-1" style="padding-top:15px; border-right:1px solid rgb(226, 225, 225); font-family: 'Encode Sans Expanded', sans-serif;">
+                <div class="">
+                    <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> CLOSE &times;</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="/">Home</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">Winners</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">Nominees</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">Collections</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">Professional directory</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">Jobs & Talent</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">Blog</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">About Us</a>
+                        <li class="dropdown-divider"></li>
+                        <a href="#">Conferences</a>
+                    </div>
+
+                    <div id="main">
+                        <span style="cursor:pointer" onclick="openNav()">&#9776; MENU</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1" style="padding-top:10px;">
+                <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
+                    <input type="text" class="form-control my-2 my-sm-0 search-input" name="search" placeholder="Search.." id="search">
+                </form>
+            </div>
+            <div class="col-md-8" style=" padding-top:5px;text-align:center;font-family: 'Comfortaa', cursive; letter-spacing:2px;">
+                <div class="row">
+                    <div class="col-md-10">
+                        <a class="navbar-brand navbar-right" href="{% url 'index' %}" style="font-size:30px; color:black; "><strong>awwwards.</strong></a>
+                    </div>
+                    <div class="col-md-2" style="padding-top:10px;">
+                        <div class="row">
+                            <div class="col-md-6" style="padding-top:5px;">
+                                <a href="{%url 'profile' user_id%}" style="font-size:13px; color:black; text-decoration: none;">{{ user.username }}</a>
+                            </div>
+                            <div class="col-md-6">
+                                {% if user.is_authenticated %}
+                                <div class="dropdown">
+                                    <a class="btn btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><span style="cursor:pointer">&#9776;</span>
+                                    </a>
+                                    <div class="dropdown-menu" style="width:300px;">
+                                        <a class="dropdown-item" href="{%url 'profile' user_id%}">Profile</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Activity</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Collections</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Notifications</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Settings</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="/logout">Logout <img style="width: 20px; float: right;"
+                                                src="https://image.flaticon.com/icons/png/512/126/126467.png" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+
+                            <a class='btn btn-default' href="/accounts/login">Login</a>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2" style="padding-top:15px; background-color: #49c5b6; text-align:center">
+                <a href="{%url 'new-post'%}" style="color:white; font-size:14px; text-decoration: none; ">SUBMIT YOUR
+                    SITE!
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
