@@ -1,7 +1,8 @@
 from django import forms
-from . models import Project, Post
-
-class SignUpForm(userCreatonForm):
+from . models import Profile, Post
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Provide a valid email adress.')
     class Meta:
         model = User
@@ -11,11 +12,6 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ['user']
-
-class UsabilityForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['rating']
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -27,13 +23,7 @@ class UserProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user']
 
-class UploadForm(forms.ModelForm):
+class NewPostForm(forms.ModelForm):
     class Meta:
-        model = Profile
+        model = Post
         fields = ['sitename','image','description','url']
-
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ['user','image', 'date_posted']

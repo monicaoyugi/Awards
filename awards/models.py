@@ -12,8 +12,6 @@ class Profile(models.Model):
     user_name = models.CharField(max_length=50, blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
 
-    def __str__(self):
-        return self.user
 
     def save_profile(self):
         self.save()
@@ -48,7 +46,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
     post_date = models.DateTimeField(auto_now=True)
     description = models.TextField(max_length=200)
-    url = models.CharField(max_length=50)   
+    url = models.CharField(max_length=50)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     country = models.CharField(max_length=50)
 
@@ -65,6 +63,3 @@ class Post(models.Model):
         new_sitename = new_sitename_object.title
         return new_sitename
 
-
-    def __str__(self):
-        return self.title
