@@ -4,12 +4,13 @@
 <link href="https://fonts.googleapis.com/css?family=Krub" rel="stylesheet">
 <div class="jumbotron" style="font-family: 'Krub', sans-serif;background-color:rgb(243, 243, 243);">
     <div class="container" style="display: block;">
-        <a href="{% url 'updateprofile' %}"><button class="btn">EDIT PROFILE</button></a>
+        <a href="{% url 'updateprofile'%}"><button class="btn">EDIT PROFILE</button></a>
         <div class="row" style="text-align:center;">
-            <img class="img-responsive" src="{{ user.profile.prof_pic.url }}" style="margin-left: auto;margin-right: auto;width: 150px; border-radius:50%; height:150px;">
+            <img class="img-responsive" src="{{ user.profile.profile_picture.url }}" style="margin-left: auto;margin-right: auto;width: 150px; border-radius:50%; height:150px;">
         </div>
         <div class="username" style="margin-top:30px;">
             <h4><strong>{{ user.username }}</strong></h4>
+            <h4><strong>{{ user.email }}</strong></h4>
             &nbsp;<p><strong>Bio</strong> {{user.profile.bio}}</p>
         </div>
         <div class="row" style="margin-top: 15px;border-top:1px solid rgb(223, 221, 221); padding-top:20px;">

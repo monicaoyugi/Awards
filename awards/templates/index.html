@@ -1,10 +1,12 @@
-{% extends 'base.html %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 {{block.super}}
  
 <link rel="stylesheet" href="{%   static 'star-ratings/css/star-ratings.css' %}">
-<div class="btn1 btn container-fluid" style="background-image: url(https://youornot.com/isespscreensv8/assets/img/award-bg.jpg)"></div>
+<div style="height: 80%;position: absolute;width: 100%;background-image: url(http://www.acibademtechnology.com/assets/images/AWARDS-BG.jpg); ">
+</div>
+<!-- <div class="btn1 btn container-fluid" style="background-image: url(http://www.acibademtechnology.com/assets/images/AWARDS-BG.jpg); height: 100%;border: solid;display: flex;"></div> -->
 <div class="header" style="height: 80vh; font-family: 'Encode Sans Expanded', sans-serif;">
     <div class="container" style="color:white;">
         <div class="row" style="padding-top:50px;">
@@ -18,9 +20,6 @@
         </div>
         <div style="text-align:center; font-size: 70px; padding-top:30px; letter-spacing: 1px;">
             <p>First Site</p>
-        </div>
-        <div style="text-align:center;">
-            <p>BY <strong style="color:#49c5b6;"> MARTIN </strong> FROM KENYA WITH <strong> 3.00</strong></p>
         </div>
         <div style="height:230px;">
 
@@ -51,15 +50,13 @@
         {% for post in posts %}
         <div class="col-md-3" style="margin-bottom:25px;">
             <div id="image" class="hover02 column body">
-                <figure><a target="blank" href="{%url 'vote' post_id=post.id%}"><img class="img-responsive" src="{{post.image.url }}"
+                <figure><a target="blank" href="{%url 'vote'%}"><img class="img-responsive" src="{{post.image.url }}"
                             width="100%" ; height="200px" ;></a></figure>
             </div>
             <div class="card-header" style="background-color:white; font-size: 13px; margin-top:0px;">
                 <p><strong>{{post.sitename}}</strong></p>
                 <p class="size">From {{post.country}} &nbsp; {{post.post_date}}</p>
 
-                {% load ratings %}
-                {% ratings post %}
             
                 <div class="text2">
                     <a target="blank" href="{{post.url}}" style="color:black; text-decoration:none;"><strong>Visit</strong>
