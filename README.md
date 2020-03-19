@@ -43,7 +43,8 @@ create database award
 
 ## Database diagram
 
-![picture](images/Awarda.png)
+![picture](https://dbdiagram.io/d/5e7371fe4495b02c3b887852)
+
 
 
 ## Install dependencies
@@ -100,6 +101,8 @@ As a user of the application I should be able to:
 
 
 ## Codebeat
+
+[![codebeat badge](https://codebeat.co/badges/ed88bffe-c97b-436a-8747-29bff5ce5938)](https://codebeat.co/projects/github-com-monicaoyugi-awards-master)
 
 
 ## LICENSE
