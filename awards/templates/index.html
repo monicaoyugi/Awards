@@ -6,16 +6,11 @@
 <link rel="stylesheet" href="{%   static 'star-ratings/css/star-ratings.css' %}">
 <div style="height: 80%;position: absolute;width: 100%;background-image: url(http://www.acibademtechnology.com/assets/images/AWARDS-BG.jpg); ">
 </div>
-<!-- <div class="btn1 btn container-fluid" style="background-image: url(http://www.acibademtechnology.com/assets/images/AWARDS-BG.jpg); height: 100%;border: solid;display: flex;"></div> -->
 <div class="header" style="height: 80vh; font-family: 'Encode Sans Expanded', sans-serif;">
     <div class="container" style="color:white;">
         <div class="row" style="padding-top:50px;">
             <div class="col-md-4">
                 <strong>Awards Site</strong> {{date|date:"F d, Y"}}
-            </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <a class="btn" href="" style="color:white;">Collect</a>
             </div>
         </div>
         <div style="text-align:center; font-size: 70px; padding-top:30px; letter-spacing: 1px;">
@@ -27,7 +22,7 @@
         <div>
             <div id="box" class="col-md-4">
                 <button class="btn" style=" border-radius: 5em; background-color: #49c5b6; border:none; padding: 2px; width: 80px;"><a
-                        target="blank" style="color: white; text-decoration:none;" href="http://www.digitaldesigner.cool/">Visit</a></button>
+                        target="blank" style="color: white; text-decoration:none;" href="https://github.com/monicaoyugi">Visit</a></button>
                 <button class="btn" style="color: white; border-radius: 5em; background-color: transparent; border:1px solid #49c5b6; padding: 2px; width: 80px;">
                     likes </button>
                 <button class="btn" style="color: white; border-radius: 5em; background-color: transparent; border:1px solid white; padding: 2px; width: 80px;">Collect</button>
@@ -56,8 +51,6 @@
             <div class="card-header" style="background-color:white; font-size: 13px; margin-top:0px;">
                 <p><strong>{{post.sitename}}</strong></p>
                 <p class="size">From {{post.country}} &nbsp; {{post.post_date}}</p>
-
-            
                 <div class="text2">
                     <a target="blank" href="{{post.url}}" style="color:black; text-decoration:none;"><strong>Visit</strong>
                     </a>

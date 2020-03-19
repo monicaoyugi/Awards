@@ -30,7 +30,6 @@ SECRET_KEY = '_s1cf!ril%hqxgcpz#w+bnk_d70%6v@=#py54%f=f6j=sj=qj7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # Application definition
 INSTALLED_APPS = [
@@ -78,8 +77,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-if config('MODE')=="dev":
-    DATABASES = {
+DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql_psycopg2',
                 'NAME': os.environ.get('DB_NAME'),
@@ -88,18 +86,8 @@ if config('MODE')=="dev":
                 'HOST': os.environ.get('DB_HOST','localhost'),
                 'PORT': os.environ.get('DB_POST','5432'),
             }
-    }
-else:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=config('DATABASE_URL')
-        )
-    }
+}
 
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
-
-    ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Password validation

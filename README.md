@@ -43,7 +43,7 @@ create database award
 
 ## Database diagram
 
-
+![picture](images/Awarda.png)
 
 
 ## Install dependencies
@@ -80,6 +80,7 @@ python3 manage.py test
 
 ## Technologies Used
 - Django
+- Django rest
 - Python
 - Html
 - Css
